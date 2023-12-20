@@ -14,50 +14,53 @@ struct HotelView: View {
     NavigationView {
       ScrollView {
         if let hotel = viewModel.hotel {
-          VStack() {
+          VStack(alignment: .leading){
             HotelImageView(imageUrls: hotel.imageUrls)
               .frame(height: 300)
               .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
               .padding(.vertical, 16)
 
-            VStack(alignment: .leading) {
-              HStack(spacing: 3) {
-                Image(systemName: "star.fill")
-                  .foregroundColor(Color.ratingColor)
-                  .frame(height: 5)
-                  .padding(.leading, 10)
-                Text("5 \(hotel.ratingName)")
-                  .foregroundStyle(Color.ratingColor)
-                  .padding(.vertical, 5)
-                  .padding(.trailing, 10)
-              }
-              .background(Color.ratingBackColor)
-              .cornerRadius(5)
-
-              Text(hotel.name)
-                .fontWeight(.medium)
-                .font(.system(size: 22))
-                .padding(.vertical, 8)
-
-              Button(action: {}) {
-                Text(hotel.address)
-                  .frame(alignment: .leading)
-                  .foregroundColor(Color.adressForegroundColor)
-                  .font(.system(size: 14))
-              }
-              HStack {
-                Text("от \(hotel.minimalPrice) ₽")
-                  .font(.system(size: 30))
-                  .fontWeight(.semibold)
-
-                 Text(hotel.priceForIt)
-                  .foregroundStyle(Color.gray)
-                  .font(.system(size: 16))
-              }
-              .padding(.vertical, 16)
+            //            VStack(alignment: .leading) {
+            HStack {
+              Image(systemName: "star.fill")
+                .foregroundColor(Color.ratingColor)
+                .frame(height: 5)
+                .padding(.leading, 10)
+              Text("5 \(hotel.ratingName)")
+                .foregroundStyle(Color.ratingColor)
+                .font(.system(size: 16, weight: .medium))
+                .padding(.vertical, 5)
+                .padding(.trailing, 10)
             }
+            .background(Color.ratingBackColor)
+            .cornerRadius(5)
+
+            Text(hotel.name)
+              .font(.system(size: 22, weight: .medium))
+              .padding(.vertical, 8)
+
+            Button(action: {}) {
+              Text(hotel.address)
+                .frame(alignment: .leading)
+                .foregroundColor(Color.adressForegroundColor)
+                .font(.system(size: 14, weight: .medium))
+            }
+            HStack {
+              Text("от \(hotel.minimalPrice) ₽")
+                .font(.system(size: 30))
+                .fontWeight(.semibold)
+
+              Text(hotel.priceForIt)
+                .foregroundStyle(Color.gray)
+                .font(.system(size: 16))
+            }
+            .padding(.vertical, 16)
+            //            }
 
           }
+            .padding(.horizontal, 16)
+            .background(Color.white)
+            .cornerRadius(12)
 
           HotelDetailView(hotel: hotel)
 
@@ -75,6 +78,7 @@ struct HotelView: View {
         }
 
       }
+      .background(Color.backgroundColor)
       .navigationBarTitle("Отель", displayMode: .large)
 
     }
@@ -87,28 +91,6 @@ struct HotelView: View {
 struct RoomSelectionView: View {
   var body: some View {
     Text("Экран выбора номера")
-  }
-}
-
-struct HotelImageView: View {
-  var imageUrls: [String]
-
-  var body: some View {
-    TabView {
-      ForEach(imageUrls, id: \.self) { imageUrl in
-        if let url = URL(string: imageUrl) {
-          AsyncImage(url: url) { image in
-            image.resizable()
-          } placeholder: {
-            Color.gray.opacity(0.3)
-          }
-          .cornerRadius(15)
-          .padding(.horizontal, 16)
-
-        }
-      }
-    }
-    .tabViewStyle(PageTabViewStyle())
   }
 }
 
@@ -126,12 +108,10 @@ struct HotelDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
-                // Название раздела "Об отеле"
                 Text("Об отеле")
-                    .font(.title2)
-                    .fontWeight(.semibold)
+                .font(.system(size: 22))
+                    .fontWeight(.medium)
 
-                // Создание двух колонок для особенностей отеля
                 let columns = [
                     GridItem(.flexible(minimum: 10)),
                     GridItem(.flexible(minimum: 10))
@@ -145,7 +125,6 @@ struct HotelDetailView: View {
                     }
                 }
 
-                // Описание отеля
                 Text(hotel.aboutTheHotel.description)
                     .font(.body)
                     .padding(.top, 5)

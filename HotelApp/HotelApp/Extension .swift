@@ -14,6 +14,7 @@ extension Color {
   static let ratingColor = Color(hex: 0xFFA800)
   static let ratingBackColor = Color(hex: 0xFFC700).opacity(0.2)
   static let adressForegroundColor = Color(hex: 0x0D72FF)
+  static let backgroundColor = Color(hex: 0xF1F1F1)
 }
 
 extension Color {
