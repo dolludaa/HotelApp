@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct HotelAppApp: App {
+struct HotelApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HotelView()
         }
     }
 }
