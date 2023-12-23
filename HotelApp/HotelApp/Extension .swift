@@ -15,6 +15,9 @@ extension Color {
   static let ratingBackColor = Color(hex: 0xFFC700).opacity(0.2)
   static let adressForegroundColor = Color(hex: 0x0D72FF)
   static let backgroundColor = Color(hex: 0xF1F1F1)
+  static let primaryGreyColor = Color(hex: 0xFBFBFC)
+  static let foregroundGrayColor = Color(hex: 0x828796)
+  static let primaryBlueColor = Color(hex: 0xe7f1ff)
 }
 
 extension Color {

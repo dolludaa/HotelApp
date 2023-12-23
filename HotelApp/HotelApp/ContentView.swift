@@ -19,9 +19,7 @@ struct HotelView: View {
               .frame(height: 300)
               .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
               .padding(.vertical, 16)
-
-            //            VStack(alignment: .leading) {
-            HStack {
+            HStack(spacing: 2){
               Image(systemName: "star.fill")
                 .foregroundColor(Color.ratingColor)
                 .frame(height: 5)
@@ -55,18 +53,17 @@ struct HotelView: View {
                 .font(.system(size: 16))
             }
             .padding(.vertical, 16)
-            //            }
 
           }
-            .padding(.horizontal, 16)
-            .background(Color.white)
-            .cornerRadius(12)
+          .padding(.horizontal, 16)
+          .background(Color.white)
+          .cornerRadius(12)
 
           HotelDetailView(hotel: hotel)
-
+          FacilityView()
           Spacer()
 
-          NavigationLink(destination: RoomSelectionView()) {
+          NavigationLink(destination: RoomsView()) {
             Text("К выбору номера")
               .frame(minWidth: 0, maxWidth: .infinity)
               .padding()
@@ -88,48 +85,6 @@ struct HotelView: View {
   }
 }
 
-struct RoomSelectionView: View {
-  var body: some View {
-    Text("Экран выбора номера")
-  }
-}
-
-
 #Preview {
   HotelView()
-}
-
-
-import SwiftUI
-
-struct HotelDetailView: View {
-    var hotel: Hotel 
-
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Об отеле")
-                .font(.system(size: 22))
-                    .fontWeight(.medium)
-
-                let columns = [
-                    GridItem(.flexible(minimum: 10)),
-                    GridItem(.flexible(minimum: 10))
-                ]
-
-                LazyVGrid(columns: columns, alignment: .leading, spacing: 20) {
-                    ForEach(hotel.aboutTheHotel.peculiarities, id: \.self) { peculiarity in
-                        Text(peculiarity)
-                            .font(.body)
-                            .padding(.vertical, 2)
-                    }
-                }
-
-                Text(hotel.aboutTheHotel.description)
-                    .font(.body)
-                    .padding(.top, 5)
-            }
-            .padding()
-        }
-    }
 }
