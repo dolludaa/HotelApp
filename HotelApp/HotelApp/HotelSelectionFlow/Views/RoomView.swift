@@ -9,21 +9,16 @@ import Foundation
 import SwiftUI
 
 struct RoomsView: View {
-  @StateObject private var viewModel = RoomViewModel()
+  @State private var viewModel = RoomViewModel()
 
   var body: some View {
-    NavigationView {
       ScrollView {
         VStack(spacing: 8) {
-          ForEach(viewModel.rooms) { room in
+
+        ForEach(viewModel.rooms) { room in
             VStack(alignment: .leading) {
-              if !room.imageUrls.isEmpty {
-                HotelImageView(imageUrls: room.imageUrls)
-                  .frame(height: 300)
-                  .padding(.horizontal, 16)
-                  .padding(.top, 16)
-                  .padding(.bottom, 8)
-              }
+              getHotelImageView(room: room)
+
               Text(room.name)
                 .font(.system(size: 22, weight: .medium))
                 .padding(.horizontal, 16)
@@ -41,8 +36,8 @@ struct RoomsView: View {
                 }
                 .padding(.horizontal, 10)
                 .padding(.vertical, 5)
-                .foregroundColor(Color.adressForegroundColor)
-                .background(Color.primaryBlueColor)
+                .foregroundColor(HotelColor.adressForeground.color)
+                .background(HotelColor.primaryBlue.color)
 
               }
               .cornerRadius(5)
@@ -73,7 +68,17 @@ struct RoomsView: View {
           }
         }
       }
-      .background(Color.primaryGreyColor)
+      .background(HotelColor.primaryGrey.color)
+  }
+
+  @ViewBuilder
+  private func getHotelImageView(room: Room) -> some View {
+    if !room.imageUrls.isEmpty {
+      HotelImageView(imageUrls: room.imageUrls)
+        .frame(height: 300)
+        .padding(.horizontal, 16)
+        .padding(.top, 16)
+        .padding(.bottom, 8)
     }
   }
 }

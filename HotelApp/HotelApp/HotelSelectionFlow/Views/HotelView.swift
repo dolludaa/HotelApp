@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  HotelView.swift
 //  HotelApp
 //
 //  Created by Людмила Долонтаева on 2023-12-20.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HotelView: View {
-  @StateObject private var viewModel = HotelViewModel()
+  @State private var viewModel = HotelViewModel()
 
   var body: some View {
     NavigationView {
@@ -21,16 +21,16 @@ struct HotelView: View {
               .padding(.vertical, 16)
             HStack(spacing: 2){
               Image(systemName: "star.fill")
-                .foregroundColor(Color.ratingColor)
+                .foregroundColor(HotelColor.rating.color)
                 .frame(height: 5)
                 .padding(.leading, 10)
               Text("5 \(hotel.ratingName)")
-                .foregroundStyle(Color.ratingColor)
+                .foregroundStyle(HotelColor.rating.color)
                 .font(.system(size: 16, weight: .medium))
                 .padding(.vertical, 5)
                 .padding(.trailing, 10)
             }
-            .background(Color.ratingBackColor)
+            .background(HotelColor.ratingBack.color)
             .cornerRadius(5)
 
             Text(hotel.name)
@@ -40,7 +40,7 @@ struct HotelView: View {
             Button(action: {}) {
               Text(hotel.address)
                 .frame(alignment: .leading)
-                .foregroundColor(Color.adressForegroundColor)
+                .foregroundColor(HotelColor.adressForeground.color)
                 .font(.system(size: 14, weight: .medium))
             }
             HStack {
@@ -63,7 +63,7 @@ struct HotelView: View {
           FacilityView()
           Spacer()
 
-          NavigationLink(destination: RoomsView()) {
+          NavigationLink(destination: RoomsView().navigationTitle(hotel.name).navigationBarTitleDisplayMode(.inline)) {
             Text("К выбору номера")
               .frame(minWidth: 0, maxWidth: .infinity)
               .padding()
@@ -75,7 +75,7 @@ struct HotelView: View {
         }
 
       }
-      .background(Color.backgroundColor)
+      .background(HotelColor.background.color)
       .navigationBarTitle("Отель", displayMode: .large)
 
     }
