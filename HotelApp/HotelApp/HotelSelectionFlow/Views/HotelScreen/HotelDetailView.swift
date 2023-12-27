@@ -22,6 +22,18 @@ struct HotelDetailView: View {
           .font(.system(size: 16))
           .padding(.top, 12)
 
+        VStack {
+          VStack(spacing: 0) {
+            FacilityRow(iconName: "happyEmoji", title: "Удобства", subtitle: "Самое необходимое")
+            Divider()
+            FacilityRow(iconName: "includedEmoji", title: "Что включено", subtitle: "Самое необходимое")
+            Divider()
+            FacilityRow(iconName: "notIncludedEmoji", title: "Что не включено", subtitle: "Самое необходимое")
+          }
+          .background(HotelColor.primaryGray.color)
+          .cornerRadius(15)
+        }
+        .background(.white)
       }
       .padding()
       .background(.white)

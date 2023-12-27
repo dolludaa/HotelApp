@@ -9,33 +9,22 @@ import SwiftUI
 import Combine
 
 @Observable
-class HotelViewModel {
+class HotelViewModel: HotelViewModelProtocol {
   var hotel: Hotel?
-  var isLoading = true
+  var isLoading = false
   var errorMessage: String?
-  private var cancellables = Set<AnyCancellable>()
+  private let httpService = HTTPService()
 
   func loadHotelData() {
-    guard let url = URL(string: "https://run.mocky.io/v3/d144777c-a67f-4e35-867a-cacc3b827473") else {
-      errorMessage = "Некорректный URL"
-      return
-    }
-
-    URLSession.shared.dataTaskPublisher(for: url)
-      .map(\.data)
-      .decode(type: Hotel.self, decoder: JSONDecoder())
-      .receive(on: DispatchQueue.main)
-      .sink(receiveCompletion: { [weak self] completion in
-        switch completion {
-        case .finished:
-          self?.isLoading = false
-        case .failure(let error):
-          self?.errorMessage = error.localizedDescription
-          self?.isLoading = false
-        }
-      }, receiveValue: { [weak self] hotel in
+    isLoading = true
+    httpService.loadData(from: "https://run.mocky.io/v3/d144777c-a67f-4e35-867a-cacc3b827473", decodeType: Hotel.self) { [weak self] result in
+      self?.isLoading = false
+      switch result {
+      case .success(let hotel):
         self?.hotel = hotel
-      })
-      .store(in: &cancellables)
+      case .failure(let error):
+        self?.errorMessage = error.localizedDescription
+      }
+    }
   }
 }

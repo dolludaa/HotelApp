@@ -9,38 +9,20 @@ import SwiftUI
 import Combine
 
 @Observable
-class RoomViewModel: ObservableObject {
+class RoomViewModel: RoomViewModelProtocol {
   var rooms: [Room] = []
   var errorMessage: String?
-  var cancellables: Set<AnyCancellable> = []
 
-  init() {
-    fetchRooms()
-  }
+  private let httpService = HTTPService()
 
   func fetchRooms() {
-    guard let url = URL(string: "https://run.mocky.io/v3/8b532701-709e-4194-a41c-1a903af00195") else {
-      errorMessage = "Некорректный URL"
-      return
+    httpService.loadData(from: "https://run.mocky.io/v3/8b532701-709e-4194-a41c-1a903af00195", decodeType: RoomsResponse.self) { [weak self] result in
+      switch result {
+      case .success(let roomResponse):
+        self?.rooms = roomResponse.rooms
+      case .failure(let error):
+        self?.errorMessage = error.localizedDescription
+      }
     }
-
-    URLSession.shared.dataTaskPublisher(for: url)
-      .map(\.data)
-      .handleEvents(receiveOutput: { data in
-        print(String(data: data, encoding: .utf8) ?? "Invalid data encoding")
-      })
-      .decode(type: RoomsResponse.self, decoder: JSONDecoder())
-      .receive(on: DispatchQueue.main)
-      .sink(receiveCompletion: { [weak self] completion in
-        switch completion {
-        case .failure(let error):
-          self?.errorMessage = error.localizedDescription
-        case .finished:
-          break
-        }
-      }, receiveValue: { [weak self] response in
-        self?.rooms = response.rooms
-      })
-      .store(in: &cancellables)
   }
 }

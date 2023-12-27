@@ -6,26 +6,24 @@
 //
 
 import SwiftUI
+import SwiftUIFlow
 
 struct PeculiaritiesGridView: View {
   var peculiarities: [String]
 
-  private let columns = [
-    GridItem(.flexible(minimum: 10)),
-    GridItem(.flexible(minimum: 10))
-  ]
-  
   var body: some View {
-    LazyVGrid(columns: columns, alignment: .leading, spacing: 20) {
+
+    VFlow(alignment: .leading) {
       ForEach(peculiarities, id: \.self) { peculiarity in
         Text(peculiarity)
           .foregroundColor(HotelColor.foregroundGray.color)
           .font(.system(size: 16, weight: .medium))
           .padding(.horizontal, 10)
           .padding(.vertical, 5)
-          .background(HotelColor.primaryGrey.color)
+          .background(HotelColor.primaryGray.color)
           .cornerRadius(5)
       }
     }
+
   }
 }

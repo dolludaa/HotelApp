@@ -9,13 +9,14 @@ import Foundation
 import SwiftUI
 
 struct RoomsView: View {
-  @State private var viewModel = RoomViewModel()
+  @Environment(HotelSelectionCoordinator.self) private var coordinator
+  @State var viewModel: RoomViewModelProtocol
 
   var body: some View {
-      ScrollView {
+    ScrollView {
+      VStack {
         VStack(spacing: 8) {
-
-        ForEach(viewModel.rooms) { room in
+          ForEach(viewModel.rooms) { room in
             VStack(alignment: .leading) {
               getHotelImageView(room: room)
 
@@ -36,39 +37,34 @@ struct RoomsView: View {
                 }
                 .padding(.horizontal, 10)
                 .padding(.vertical, 5)
-                .foregroundColor(HotelColor.adressForeground.color)
+                .foregroundColor(HotelColor.secondaryBlue.color)
                 .background(HotelColor.primaryBlue.color)
-
               }
               .cornerRadius(5)
               .padding(.horizontal, 16)
 
-              HStack {
-                Text("\(room.price) ₽")
-                  .font(.system(size: 30))
-                  .fontWeight(.semibold)
+              HotelPriceView(minPrice: room.price, priceForIt: room.pricePer)
+                .padding(.horizontal, 16)
 
-                Text(room.pricePer)
-                  .foregroundStyle(Color.gray)
-                  .font(.system(size: 16))
+              MainButtonView(title: "Выбрать номер") {
+                coordinator.push(.booking)
               }
-              .padding(16)
-
-              NavigationLink(destination: EmptyView()) {
-                Text("Выбрать номер")
-                  .frame(minWidth: 0, maxWidth: .infinity)
-                  .padding()
-                  .background(Color.blue)
-                  .foregroundColor(Color.white)
-                  .cornerRadius(15)
-                  .padding(.horizontal, 16)
-              }
+              .padding(.horizontal, 16)
+              .padding(.bottom, 16)
             }
             .background(.white)
+            .cornerRadius(15)
           }
         }
+        .padding(.top, 8)
       }
-      .background(HotelColor.primaryGrey.color)
+      .background(HotelColor.background.color)
+    }
+    .background(.white)
+    .navigationBarTitleDisplayMode(.inline)
+    .task {
+      viewModel.fetchRooms()
+    }
   }
 
   @ViewBuilder
@@ -85,7 +81,5 @@ struct RoomsView: View {
 
 
 #Preview {
-  RoomsView()
+  HotelSelectionCoordinatorView(startPage: .room(title: "my title"))
 }
-
-
