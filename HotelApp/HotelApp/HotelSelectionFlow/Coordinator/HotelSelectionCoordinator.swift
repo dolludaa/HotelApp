@@ -52,7 +52,6 @@ class HotelSelectionCoordinator {
       case .orderConfirmation:
         OrderConfirmationView()
           .navigationTitle("Заказ оплачен")
-          .navigationBarBackButtonHidden(false)
       }
     }
 }

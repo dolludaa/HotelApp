@@ -61,6 +61,7 @@ struct RoomsView: View {
     }
     .background(.white)
     .navigationBarTitleDisplayMode(.inline)
+    .navigationBackButton(color: .black)
     .task {
       viewModel.fetchRooms()
     }

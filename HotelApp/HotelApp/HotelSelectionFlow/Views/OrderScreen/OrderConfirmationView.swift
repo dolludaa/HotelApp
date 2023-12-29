@@ -38,7 +38,8 @@ struct OrderConfirmationView: View {
       }
       .padding(.horizontal, 16)
     }
-    .navigationBarBackButtonHidden(true)
+    .navigationBarTitleDisplayMode(.inline)
+    .navigationBackButton(color: .black)
   }
 }
 
