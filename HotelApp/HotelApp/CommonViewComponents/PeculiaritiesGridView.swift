@@ -24,6 +24,5 @@ struct PeculiaritiesGridView: View {
           .cornerRadius(5)
       }
     }
-
   }
 }

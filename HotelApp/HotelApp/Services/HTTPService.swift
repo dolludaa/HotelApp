@@ -17,23 +17,17 @@ class HTTPService: HTTPServiceProtocol {
     decoder.keyDecodingStrategy = .convertFromSnakeCase
   }
 
-  func loadData<T: Decodable>(from urlString: String, decodeType: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
+  func loadData<T: Decodable>(from urlString: String, decodeType: T.Type) -> AnyPublisher<T, Error> {
     guard let url = URL(string: urlString) else {
-      completion(.failure(NSError(domain: "HTTPService", code: 1, userInfo: [NSLocalizedDescriptionKey: "Некорректный URL"])))
-      return
+      return Fail(error: NSError(domain: "HTTPService", code: 1, userInfo: [NSLocalizedDescriptionKey: "Некорректный URL"]))
+        .eraseToAnyPublisher()
     }
 
-    URLSession.shared.dataTaskPublisher(for: url)
+    return URLSession.shared.dataTaskPublisher(for: url)
       .map(\.data)
       .decode(type: T.self, decoder: decoder)
       .receive(on: DispatchQueue.main)
-      .sink { completionResult in
-        if case let .failure(error) = completionResult {
-          completion(.failure(error))
-        }
-      } receiveValue: { decodedData in
-        completion(.success(decodedData))
-      }
-      .store(in: &cancellables)
+      .eraseToAnyPublisher()
   }
+
 }

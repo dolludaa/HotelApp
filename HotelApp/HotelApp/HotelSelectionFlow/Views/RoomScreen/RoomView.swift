@@ -43,13 +43,12 @@ struct RoomsView: View {
               .cornerRadius(5)
               .padding(.horizontal, 16)
 
-              HotelPriceView(minPrice: room.price, priceForIt: room.pricePer)
+              HotelPriceView(minPrice: room.price, priceForIt: room.pricePer, showFromLabel: false)
                 .padding(.horizontal, 16)
 
               MainButtonView(title: "Выбрать номер") {
                 coordinator.push(.booking)
               }
-              .padding(.horizontal, 16)
               .padding(.bottom, 16)
             }
             .background(.white)
@@ -71,7 +70,7 @@ struct RoomsView: View {
   private func getHotelImageView(room: Room) -> some View {
     if !room.imageUrls.isEmpty {
       HotelImageView(imageUrls: room.imageUrls)
-        .frame(height: 300)
+        .frame(height: 275)
         .padding(.horizontal, 16)
         .padding(.top, 16)
         .padding(.bottom, 8)
@@ -83,3 +82,4 @@ struct RoomsView: View {
 #Preview {
   HotelSelectionCoordinatorView(startPage: .room(title: "my title"))
 }
+

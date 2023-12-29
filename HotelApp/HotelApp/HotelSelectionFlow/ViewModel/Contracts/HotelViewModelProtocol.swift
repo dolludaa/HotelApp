@@ -8,6 +8,7 @@
 import Foundation
 
 protocol HotelViewModelProtocol {
+  var hotelURL: String { get }
   var hotel: Hotel? { get }
   var isLoading: Bool { get }
   var errorMessage: String? { get }

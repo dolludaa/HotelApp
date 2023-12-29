@@ -19,9 +19,9 @@ struct MainButtonView: View {
         .background(HotelColor.secondaryBlue.color)
         .foregroundColor(.white)
         .cornerRadius(15)
-//        .padding(.horizontal)
         .onTapGesture(perform: action)
     }
+    .padding(.horizontal, 16)
     .padding(.top, 10)
     .background(.white)
   }

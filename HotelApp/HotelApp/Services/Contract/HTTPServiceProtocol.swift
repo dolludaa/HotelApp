@@ -5,8 +5,8 @@
 //  Created by Людмила Долонтаева on 2023-12-26.
 //
 
-import Foundation
+import Combine
 
 protocol HTTPServiceProtocol {
-  func loadData<T: Decodable>(from urlString: String, decodeType: T.Type, completion: @escaping (Result<T, Error>) -> Void)
+  func loadData<T: Decodable>(from urlString: String, decodeType: T.Type) -> AnyPublisher<T, Error>
 }

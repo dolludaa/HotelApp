@@ -35,7 +35,6 @@ struct BookingView: View {
             addTouristButton
 
             TotalPriceView(viewModel: viewModel)
-              .padding(16)
               .standardStyle()
           }
         }

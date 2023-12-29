@@ -8,6 +8,7 @@
 import Foundation
 
 protocol ReservationViewModelProtocol {
+  var reservationURL: String { get }
   var hotelBooking: HotelBooking? { get }
   var tourists: [Tourist] { get set }
   var isLoading: Bool { get }

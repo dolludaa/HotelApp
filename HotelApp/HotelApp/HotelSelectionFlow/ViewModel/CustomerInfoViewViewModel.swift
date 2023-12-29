@@ -18,7 +18,7 @@ class CustomerInfoViewViewModel: CustomerInfoViewViewModelProtocol {
       phone.removeFirst(removalCount)
     }
 
-    var mask = Array("(***) ***-**-**")
+    let mask = Array("(***) ***-**-**")
     var phoneFigures = Array(phone.filter { $0.isNumber })
     var result = "+7 "
 

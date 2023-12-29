@@ -12,17 +12,22 @@ import Combine
 class RoomViewModel: RoomViewModelProtocol {
   var rooms: [Room] = []
   var errorMessage: String?
+  var roomURL = APIEndpoint.roomData.url
 
   private let httpService = HTTPService()
+  private var cancellables = Set<AnyCancellable>()
 
   func fetchRooms() {
-    httpService.loadData(from: "https://run.mocky.io/v3/8b532701-709e-4194-a41c-1a903af00195", decodeType: RoomsResponse.self) { [weak self] result in
-      switch result {
-      case .success(let roomResponse):
+    httpService.loadData(from: roomURL, decodeType: RoomsResponse.self)
+      .receive(on: DispatchQueue.main)
+      .sink(receiveCompletion: { [weak self] completion in
+        if case let .failure(error) = completion {
+          self?.errorMessage = error.localizedDescription
+        }
+      }, receiveValue: { [weak self] roomResponse in
         self?.rooms = roomResponse.rooms
-      case .failure(let error):
-        self?.errorMessage = error.localizedDescription
-      }
-    }
+      })
+      .store(in: &cancellables)
   }
 }
+

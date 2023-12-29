@@ -23,6 +23,8 @@ struct TotalPriceView: View {
           Spacer()
           Text("\(hotel.tourPrice) ₽")
         }
+        .padding(.horizontal, 16)
+        .padding(.top, 16)
 
         HStack {
           Text("Топливный сбор")
@@ -31,6 +33,7 @@ struct TotalPriceView: View {
           Spacer()
           Text("\(hotel.fuelCharge) ₽")
         }
+        .padding(.horizontal, 16)
 
         HStack {
           Text("Сервисный сбор")
@@ -39,6 +42,7 @@ struct TotalPriceView: View {
           Spacer()
           Text("\(hotel.serviceCharge) ₽")
         }
+        .padding(.horizontal, 16)
 
         let totalPrice = hotel.tourPrice + hotel.fuelCharge + hotel.serviceCharge
 
@@ -51,6 +55,7 @@ struct TotalPriceView: View {
             .font(.system(size: 16, weight: .semibold))
             .foregroundStyle(HotelColor.secondaryBlue.color)
         }
+        .padding(.horizontal, 16)
 
         MainButtonView(title: "Оплатить \(totalPrice) ₽") {
           if viewModel.isTouristsDataCompleted {

@@ -10,6 +10,7 @@ import Combine
 
 @Observable
 class ReservationViewModel: ReservationViewModelProtocol {
+  var reservationURL = APIEndpoint.reservationData.url
   var hotelBooking: HotelBooking?
   var isLoading = false
   var errorMessage: String?
@@ -28,29 +29,38 @@ class ReservationViewModel: ReservationViewModelProtocol {
 
   private let maxTouristNumber = 10
   private let httpService: HTTPServiceProtocol
+  private var cancellables = Set<AnyCancellable>()
+
 
   init(httpService: HTTPServiceProtocol) {
     self.httpService = httpService
   }
 
   func fetchRooms() {
-    httpService.loadData(
-      from: "https://run.mocky.io/v3/63866c74-d593-432c-af8e-f279d1a8d2ff",
-      decodeType: HotelBooking.self
-    ) { [weak self] result in
-      guard let self else { return }
-
-      switch result {
-      case .success(let booking):
-        hotelBooking = booking
-        if tourists.isEmpty {
-          addTourist()
+    isLoading = true
+    httpService.loadData(from: reservationURL, decodeType: HotelBooking.self)
+      .sink(
+        receiveCompletion: { [weak self] (completion: Subscribers.Completion<Error>) in
+          guard let self = self else { return }
+          self.isLoading = false
+          switch completion {
+          case .finished:
+            break
+          case .failure(let error):
+            self.errorMessage = error.localizedDescription
+          }
+        },
+        receiveValue: { [weak self] (booking: HotelBooking) in
+          guard let self = self else { return }
+          self.hotelBooking = booking
+          if self.tourists.isEmpty {
+            self.addTourist()
+          }
         }
-      case .failure(let error):
-        errorMessage = error.localizedDescription
-      }
-    }
+      )
+      .store(in: &cancellables)
   }
+
 
   func addTourist() {
     guard tourists.count < maxTouristNumber

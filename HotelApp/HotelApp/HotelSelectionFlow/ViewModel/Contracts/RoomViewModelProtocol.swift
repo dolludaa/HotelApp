@@ -8,6 +8,7 @@
 import Foundation
 
 protocol RoomViewModelProtocol {
+  var roomURL: String { get }
   var rooms: [Room] { get }
   var errorMessage: String? { get }
 

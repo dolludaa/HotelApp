@@ -28,7 +28,7 @@ struct CustomerInfoView: View {
         text: $phoneNumber
       )
       .keyboardType(.numberPad)
-      .onChange(of: phoneNumber) { newValue in
+      .onChange(of: phoneNumber) { _, newValue in
         phoneNumber = viewModel.format(phone: newValue)
       }
       .keyboardType(.numberPad)
@@ -41,7 +41,7 @@ struct CustomerInfoView: View {
       .focused($isEmailInFocus)
       .keyboardType(.emailAddress)
       .autocapitalization(.none)
-      .onChange(of: email) { newValue in
+      .onChange(of: email) { _, newValue in
         isEmailValid = viewModel.validateEmail(email: newValue)
       }
       .foregroundColor(!isEmailInFocus && !isEmailValid ? .red : .primary)
