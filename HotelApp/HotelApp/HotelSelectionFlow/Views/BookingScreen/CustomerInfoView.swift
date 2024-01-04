@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct CustomerInfoView: View {
+
+  enum States {
+    case email
+  }
+
   @State private var phoneNumber = ""
   @State private var email = ""
   @State private var isPhoneValid = true
@@ -23,7 +28,7 @@ struct CustomerInfoView: View {
         .font(.system(size: 22, weight: .medium))
 
       FloatingLabelTextField(
-        shouldShowError: false,
+        shouldShowError: .constant(false),
         placeholder: "Номер телефона",
         text: $phoneNumber
       )
@@ -34,7 +39,7 @@ struct CustomerInfoView: View {
       .keyboardType(.numberPad)
 
       FloatingLabelTextField(
-        shouldShowError: false,
+        shouldShowError: .constant(!isEmailInFocus && !isEmailValid),
         placeholder: "Почта",
         text: $email
       )
@@ -44,12 +49,14 @@ struct CustomerInfoView: View {
       .onChange(of: email) { _, newValue in
         isEmailValid = viewModel.validateEmail(email: newValue)
       }
-      .foregroundColor(!isEmailInFocus && !isEmailValid ? .red : .primary)
 
       Text("Эти данные никому не передаются. После оплаты мы вышлем чек на указанный вами номер и почту")
         .font(.system(size: 14))
         .foregroundColor(HotelColor.foregroundGray.color)
         .padding(.top, 8)
     }
+    .onTapGesture {
+          hideKeyboard()
+        }
   }
 }

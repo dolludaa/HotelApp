@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CountryPickerView: View {
   @Binding var selectedCountry: String
-  var viewModel: CountryPickerViewModelProtocol
+  @State var viewModel: CountryPickerViewModelProtocol
   @Environment(\.presentationMode) var presentationMode
 
   var body: some View {

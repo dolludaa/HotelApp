@@ -11,6 +11,7 @@ import SwiftUI
 struct RoomsView: View {
   @Environment(HotelSelectionCoordinator.self) private var coordinator
   @State var viewModel: RoomViewModelProtocol
+  let title: String
 
   var body: some View {
     ScrollView {
@@ -61,6 +62,15 @@ struct RoomsView: View {
     }
     .background(.white)
     .navigationBarTitleDisplayMode(.inline)
+    .toolbar {
+      ToolbarItem(placement: .principal) {
+        Text(title)
+          .bold()
+          .multilineTextAlignment(.center)
+          .lineLimit(2)
+          .fixedSize(horizontal: false, vertical: true)
+      }
+    }
     .navigationBackButton(color: .black)
     .task {
       viewModel.fetchRooms()
@@ -71,16 +81,10 @@ struct RoomsView: View {
   private func getHotelImageView(room: Room) -> some View {
     if !room.imageUrls.isEmpty {
       HotelImageView(imageUrls: room.imageUrls)
-        .frame(height: 275)
+        .frame(height: 257)
         .padding(.horizontal, 16)
         .padding(.top, 16)
         .padding(.bottom, 8)
     }
   }
 }
-
-
-#Preview {
-  HotelSelectionCoordinatorView(startPage: .room(title: "my title"))
-}
-

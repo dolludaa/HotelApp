@@ -33,16 +33,14 @@ struct OrderConfirmationView: View {
 
       Spacer()
 
-      MainButtonView(title: "Супер") {
-        coordinator.popToRoot()
-      }
-      .padding(.horizontal, 16)
+      VStack(spacing: 0) {
+        Divider()
+        MainButtonView(title: "Супер!") {
+          coordinator.popToRoot()
+        }
+      }.frame(maxWidth: .infinity)
     }
     .navigationBarTitleDisplayMode(.inline)
     .navigationBackButton(color: .black)
   }
-}
-
-#Preview {
-  HotelSelectionCoordinatorView(startPage: .orderConfirmation)
 }

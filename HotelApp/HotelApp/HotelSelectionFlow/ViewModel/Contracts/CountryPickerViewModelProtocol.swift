@@ -9,5 +9,6 @@ import Foundation
 
 protocol CountryPickerViewModelProtocol {
   var countries: [String] { get }
+  
   func loadCountries()
 }

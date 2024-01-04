@@ -67,7 +67,3 @@ struct BookingView: View {
     }
   }
 }
-
-#Preview {
-  HotelSelectionCoordinatorView(startPage: .booking)
-}

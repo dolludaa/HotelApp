@@ -10,9 +10,9 @@ import SwiftUIFlow
 
 struct PeculiaritiesGridView: View {
   var peculiarities: [String]
-
+  
   var body: some View {
-
+    
     VFlow(alignment: .leading) {
       ForEach(peculiarities, id: \.self) { peculiarity in
         Text(peculiarity)

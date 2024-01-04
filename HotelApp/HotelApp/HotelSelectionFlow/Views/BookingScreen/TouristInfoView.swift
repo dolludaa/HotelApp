@@ -34,9 +34,21 @@ struct TouristInfoView: View {
           }
         }
         if isFieldsVisible {
-          FloatingLabelTextField(shouldShowError: tourist.shouldShowError, placeholder: "Имя", text: $tourist.firstName)
           FloatingLabelTextField(
-            shouldShowError: tourist.shouldShowError,
+            shouldShowError: .constant(
+              !viewModel.validateFirstOrLastName(
+                text: tourist.firstName
+              ) && tourist.shouldShowError
+            ),
+            placeholder: "Имя",
+            text: $tourist.firstName
+          )
+          FloatingLabelTextField(
+            shouldShowError: .constant(
+              !viewModel.validateFirstOrLastName(
+                text: tourist.lastName
+              ) && tourist.shouldShowError
+            ),
             placeholder: "Фамилия",
             text: $tourist.lastName
           )
@@ -48,7 +60,7 @@ struct TouristInfoView: View {
             )
           ) {
             FloatingLabelTextField(
-              shouldShowError: tourist.shouldShowError,
+              shouldShowError: .constant(tourist.shouldShowError && tourist.citizenship.isEmpty),
               placeholder: "Гражданство",
               text: $tourist.citizenship
             )
@@ -57,7 +69,7 @@ struct TouristInfoView: View {
           }
 
           FloatingLabelTextField(
-            shouldShowError: tourist.shouldShowError,
+            shouldShowError: .constant(tourist.shouldShowError && tourist.birthDate == nil),
             placeholder: "Дата рождения",
             text: .constant(
               viewModel.getFormattedDate(from: tourist.birthDate)
@@ -79,13 +91,17 @@ struct TouristInfoView: View {
           }
 
           FloatingLabelTextField(
-            shouldShowError: tourist.shouldShowError,
+            shouldShowError: .constant(
+              !viewModel.validatePassport(
+                text: tourist.passportNumber
+              ) && tourist.shouldShowError
+            ),
             placeholder: "Номер загранпаспорта",
             text: $tourist.passportNumber
           )
 
           FloatingLabelTextField(
-            shouldShowError: tourist.shouldShowError,
+            shouldShowError: .constant(tourist.shouldShowError && tourist.passportExpiry == nil),
             placeholder: "Срок действия загранпаспорта",
             text: .constant(
               viewModel.getFormattedDate(from: tourist.passportExpiry)
@@ -111,8 +127,4 @@ struct TouristInfoView: View {
     .padding(16)
     .background(.white)
   }
-}
-
-#Preview {
-  HotelSelectionCoordinatorView(startPage: .booking)
 }

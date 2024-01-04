@@ -9,4 +9,6 @@ import Foundation
 
 protocol TouristInfoViewModelProtocol {
   func getFormattedDate(from date: Date?) -> String
+  func validateFirstOrLastName(text: String) -> Bool
+  func validatePassport(text: String) -> Bool
 }

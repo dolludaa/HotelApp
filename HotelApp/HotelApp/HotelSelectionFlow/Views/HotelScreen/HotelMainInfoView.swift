@@ -11,16 +11,16 @@ struct HotelMainInfoView: View {
   let ratingScore: String
   let name: String
   let address: String
-
+  
   var body: some View {
     VStack(alignment: .leading) {
       HStack(spacing: 2) {
         Image(systemName: "star.fill")
           .foregroundColor(HotelColor.rating.color)
-          .frame(height: 5)
+          .frame(height: 15)
           .padding(.leading, 10)
           .padding(.vertical, 5)
-
+        
         Text("5 \(ratingScore)")
           .foregroundStyle(HotelColor.rating.color)
           .font(.system(size: 16, weight: .medium))
@@ -30,11 +30,11 @@ struct HotelMainInfoView: View {
       .background(HotelColor.yellowBackground.color)
       .cornerRadius(5)
       .padding(.top, 16)
-
+      
       Text(name)
         .font(.system(size: 22, weight: .medium))
         .padding(.vertical, 8)
-
+      
       Button(action: {}) {
         Text(address)
           .frame(alignment: .leading)
@@ -45,8 +45,4 @@ struct HotelMainInfoView: View {
     }
     .frame(maxWidth: .infinity, alignment: .leading)
   }
-}
-
-#Preview {
-  HotelSelectionCoordinatorView(startPage: .hotel)
 }

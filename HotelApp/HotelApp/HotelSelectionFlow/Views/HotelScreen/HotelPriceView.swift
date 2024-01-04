@@ -34,8 +34,3 @@ struct HotelPriceView: View {
     .frame(maxWidth: .infinity, alignment: .leading)
   }
 }
-
-
-#Preview {
-  HotelSelectionCoordinatorView(startPage: .hotel)
-}

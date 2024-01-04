@@ -34,7 +34,7 @@ enum HotelColor {
     case .primaryBlue:
       Color(hex: 0xe7f1ff)
     case .error:
-      Color(hex: 0xEB5757 )
+      Color(hex: 0xEB5757).opacity(0.15)
     }
   }
 }

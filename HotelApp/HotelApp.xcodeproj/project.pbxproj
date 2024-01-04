@@ -56,6 +56,10 @@
 		44CA09712B3F57C700E150DC /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CA09702B3F57C700E150DC /* APIEndpoint.swift */; };
 		44CA09732B3F5E0C00E150DC /* HotelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CA09722B3F5E0C00E150DC /* HotelView.swift */; };
 		44CA09752B3F65C100E150DC /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CA09742B3F65C100E150DC /* String.swift */; };
+		44CA09772B3F699D00E150DC /* NavigationBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CA09762B3F699D00E150DC /* NavigationBackButton.swift */; };
+		44CA09792B3FA59500E150DC /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CA09782B3FA59500E150DC /* Array.swift */; };
+		44CA097B2B3FAD2E00E150DC /* GradientIndexPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CA097A2B3FAD2E00E150DC /* GradientIndexPageControl.swift */; };
+		44CA097D2B463F4A00E150DC /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CA097C2B463F4A00E150DC /* Page.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +111,10 @@
 		44CA09702B3F57C700E150DC /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		44CA09722B3F5E0C00E150DC /* HotelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HotelView.swift; path = ../HotelView.swift; sourceTree = "<group>"; };
 		44CA09742B3F65C100E150DC /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		44CA09762B3F699D00E150DC /* NavigationBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBackButton.swift; sourceTree = "<group>"; };
+		44CA09782B3FA59500E150DC /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		44CA097A2B3FAD2E00E150DC /* GradientIndexPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientIndexPageControl.swift; sourceTree = "<group>"; };
+		44CA097C2B463F4A00E150DC /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				44CA09702B3F57C700E150DC /* APIEndpoint.swift */,
+				44CA097C2B463F4A00E150DC /* Page.swift */,
 				4446A2C42B38A9E000A3119D /* HotelColor.swift */,
 				4446A2C22B38A9A600A3119D /* Extensions */,
 			);
@@ -212,6 +221,7 @@
 				4446A2AE2B33759800A3119D /* Color.swift */,
 				444DD3B92B3B980B00C2E37C /* View.swift */,
 				44CA09742B3F65C100E150DC /* String.swift */,
+				44CA09782B3FA59500E150DC /* Array.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -307,6 +317,8 @@
 				444DD3B32B3B8A6300C2E37C /* MainButtonView.swift */,
 				4446A2B52B36593F00A3119D /* PeculiaritiesGridView.swift */,
 				444DD3CF2B3BC41A00C2E37C /* FloatingLabelTextField.swift */,
+				44CA09762B3F699D00E150DC /* NavigationBackButton.swift */,
+				44CA097A2B3FAD2E00E150DC /* GradientIndexPageControl.swift */,
 			);
 			path = CommonViewComponents;
 			sourceTree = "<group>";
@@ -398,11 +410,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44CA09772B3F699D00E150DC /* NavigationBackButton.swift in Sources */,
 				444DD3A92B3B698B00C2E37C /* HotelViewModelProtocol.swift in Sources */,
 				444DD3D22B3BC44E00C2E37C /* BookingRow.swift in Sources */,
 				444DD3C02B3B98DC00C2E37C /* TouristInfoViewModel.swift in Sources */,
+				44CA097D2B463F4A00E150DC /* Page.swift in Sources */,
 				444DD3BE2B3B98C300C2E37C /* Tourist.swift in Sources */,
 				444DD3D02B3BC41A00C2E37C /* FloatingLabelTextField.swift in Sources */,
+				44CA09792B3FA59500E150DC /* Array.swift in Sources */,
 				444DD3BA2B3B980B00C2E37C /* View.swift in Sources */,
 				444DD3C62B3B9A8600C2E37C /* CountryPickerViewModel.swift in Sources */,
 				4446A2CE2B38DA7D00A3119D /* BookingView .swift in Sources */,
@@ -441,6 +456,7 @@
 				4446A2CA2B38AB9D00A3119D /* ReservationViewModel.swift in Sources */,
 				444DD3B82B3B95F400C2E37C /* AddTouristView.swift in Sources */,
 				444DD3C22B3B990600C2E37C /* TouristInfoViewModelProtocol.swift in Sources */,
+				44CA097B2B3FAD2E00E150DC /* GradientIndexPageControl.swift in Sources */,
 				4446A29D2B33573200A3119D /* HotelApp.swift in Sources */,
 				4446A2BE2B38A88400A3119D /* HotelViewModel.swift in Sources */,
 			);

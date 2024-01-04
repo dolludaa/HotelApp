@@ -10,7 +10,7 @@ import SwiftUI
 struct MainButtonView: View {
   let title: String
   var action: () -> Void
-
+  
   var body: some View {
     VStack {
       Text(title)

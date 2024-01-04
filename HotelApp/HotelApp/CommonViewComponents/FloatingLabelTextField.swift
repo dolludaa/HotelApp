@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FloatingLabelTextField: View {
-  let shouldShowError: Bool
+  @Binding var shouldShowError: Bool
   let placeholder: String
   @Binding var text: String
   @State private var isEditing: Bool = false
@@ -18,18 +18,10 @@ struct FloatingLabelTextField: View {
     isEditing || !text.isEmpty
   }
 
-  private var isErrorVisible: Bool {
-    shouldShowError && text.isEmpty
-  }
-
   var body: some View {
     ZStack(alignment: .leading) {
       Text(placeholder)
-        .foregroundColor(
-          isErrorVisible
-          ? Color.white
-          : HotelColor.foregroundGray.color
-        )
+        .foregroundColor(HotelColor.foregroundGray.color)
         .font(.system(size: isFullView ? 12 : 17))
         .offset(x: 0, y: isFullView ? -14 : 0)
         .padding(.horizontal, isFullView ? 4 : 0)
@@ -50,7 +42,7 @@ struct FloatingLabelTextField: View {
     }
     .frame(height: 52)
     .background(
-      isErrorVisible
+      shouldShowError
       ? HotelColor.error.color
       : HotelColor.background.color
     )

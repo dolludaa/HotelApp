@@ -10,12 +10,9 @@ import SwiftUI
 @main
 struct HotelApp: App {
 
-    var body: some Scene {
-        WindowGroup {
-          HotelSelectionCoordinatorView()
-            .onAppear {
-                                UINavigationBar.appearance().tintColor = UIColor.systemGreen
-                            }
-        }
+  var body: some Scene {
+    WindowGroup {
+      HotelSelectionCoordinatorView()
     }
+  }
 }

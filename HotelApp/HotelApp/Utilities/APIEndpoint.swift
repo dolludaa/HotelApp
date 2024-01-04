@@ -9,11 +9,11 @@ import Foundation
 
 enum APIEndpoint {
   static let baseURL = "https://run.mocky.io/v3/"
-
+  
   case hotelData
   case roomData
   case reservationData
-
+  
   var url: String {
     switch self {
     case .hotelData:

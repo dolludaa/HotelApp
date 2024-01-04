@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct HotelSelectionCoordinatorView: View {
-
+  
   var startPage = Page.hotel
   @State private var coordinator = HotelSelectionCoordinator()
-
+  
   var body: some View {
     NavigationStack(path: $coordinator.path) {
       coordinator.build(page: startPage)
@@ -21,8 +21,4 @@ struct HotelSelectionCoordinatorView: View {
     }
     .environment(coordinator)
   }
-}
-
-#Preview {
-  HotelSelectionCoordinatorView()
 }
