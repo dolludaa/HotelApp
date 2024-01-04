@@ -24,7 +24,8 @@ struct HotelView: View {
             HotelMainInfoView(ratingScore: hotel.ratingName, name: hotel.name, address: hotel.adress)
             
             HotelPriceView(minPrice: hotel.minimalPrice, priceForIt: hotel.priceForIt, showFromLabel: true)
-            
+              .padding(.bottom, 16)
+
           }
           .padding(.horizontal, 16)
           .background(Color.white)

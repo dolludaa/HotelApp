@@ -21,7 +21,7 @@ struct TotalPriceView: View {
             .font(.system(size: 16))
             .foregroundStyle(HotelColor.foregroundGray.color)
           Spacer()
-          Text("\(hotel.tourPrice) ₽")
+          Text("\(hotel.tourPrice.description.formattedAsCurrency()) ₽")
         }
         .padding(.horizontal, 16)
         .padding(.top, 16)
@@ -31,7 +31,7 @@ struct TotalPriceView: View {
             .font(.system(size: 16))
             .foregroundStyle(HotelColor.foregroundGray.color)
           Spacer()
-          Text("\(hotel.fuelCharge) ₽")
+          Text("\(hotel.fuelCharge.description.formattedAsCurrency()) ₽")
         }
         .padding(.horizontal, 16)
         
@@ -40,7 +40,7 @@ struct TotalPriceView: View {
             .font(.system(size: 16))
             .foregroundStyle(HotelColor.foregroundGray.color)
           Spacer()
-          Text("\(hotel.serviceCharge) ₽")
+          Text("\(hotel.serviceCharge.description.formattedAsCurrency()) ₽")
         }
         .padding(.horizontal, 16)
         
@@ -51,13 +51,13 @@ struct TotalPriceView: View {
             .font(.system(size: 16))
             .foregroundStyle(HotelColor.foregroundGray.color)
           Spacer()
-          Text("\(totalPrice) ₽")
+          Text("\(totalPrice.description.formattedAsCurrency()) ₽")
             .font(.system(size: 16, weight: .semibold))
             .foregroundStyle(HotelColor.secondaryBlue.color)
         }
         .padding(.horizontal, 16)
         
-        MainButtonView(title: "Оплатить \(totalPrice) ₽") {
+        MainButtonView(title: "Оплатить \(totalPrice.description.formattedAsCurrency()) ₽") {
           if viewModel.isTouristsDataCompleted {
             coordinator.push(.orderConfirmation)
           } else {

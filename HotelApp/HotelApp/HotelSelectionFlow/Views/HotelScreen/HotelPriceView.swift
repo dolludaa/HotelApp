@@ -29,7 +29,6 @@ struct HotelPriceView: View {
           .font(.system(size: 16))
           .padding(.bottom, 3)
       }
-      .padding(.bottom, 16)
     }
     .frame(maxWidth: .infinity, alignment: .leading)
   }
