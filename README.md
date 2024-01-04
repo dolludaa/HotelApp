@@ -56,6 +56,6 @@ HotelApp — это демонстрационное приложение для
 - **UI Framework:** SwiftUI для построения пользовательского интерфейса.
 - **Реактивное программирование:** Combine для управления асинхронными событиями и данных.
 
-https://github.com/dolludaa/PersonsResume/assets/111228178/5d6f528d-3a59-4fc3-a62d-ae40d2eed5d9
+https://github.com/dolludaa/PersonsResume/assets/111228178/69f63caf-ed97-4392-b01e-7b4b3520be41
 
 
